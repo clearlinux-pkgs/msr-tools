@@ -4,7 +4,7 @@
 #
 Name     : msr-tools
 Version  : 1.3
-Release  : 1
+Release  : 2
 URL      : https://01.org/sites/default/files/downloads/msr-tools/msr-tools-1.3.zip
 Source0  : https://01.org/sites/default/files/downloads/msr-tools/msr-tools-1.3.zip
 Summary  : No detailed summary available
@@ -42,6 +42,6 @@ rm -rf %{buildroot}
 
 %files bin
 %defattr(-,root,root,-)
-/usr/bin/cpuid
+%exclude /usr/bin/cpuid
 /usr/bin/rdmsr
 /usr/bin/wrmsr
