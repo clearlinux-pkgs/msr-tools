@@ -1,0 +1,46 @@
+From df5a12d35cf2de1cdd3a223a8486299e35286567 Mon Sep 17 00:00:00 2001
+From: Victor Rodriguez <victor.rodriguez.bahena@intel.com>
+Date: Mon, 14 Nov 2016 15:50:42 +0000
+Subject: [PATCH] Change name of cpuid tools to msr-cpuid
+
+This change is necesary sinc ethe name has conflicts with other open
+sourse projects already installed in the operating system:
+
+http://pkgs.fedoraproject.org/cgit/rpms/cpuid.git/tree/cpuid.spec
+
+Even RH cahnge the name of the binary to avoid conlficts:
+
+http://pkgs.fedoraproject.org/cgit/rpms/msr-tools.git/tree/msr-tools.spec
+
+install -D cpuid %{buildroot}%{_sbindir}/msr-cpuid
+
+Signed-off-by: Victor Rodriguez <victor.rodriguez.bahena@intel.com>
+---
+ Makefile.am | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/Makefile.am b/Makefile.am
+index 353e54c..dff1474 100644
+--- a/Makefile.am
++++ b/Makefile.am
+@@ -1,7 +1,7 @@
+ AM_CFLAGS = -Wall -g -O2 -fomit-frame-pointer \
+ 	-D_GNU_SOURCE -D_FILE_OFFSET_BITS=64
+ 
+-bin_PROGRAMS = wrmsr rdmsr cpuid
++bin_PROGRAMS = wrmsr rdmsr msr-cpuid
+ 
+ wrmsr_SOURCES =		\
+ 	wrmsr.c		\
+@@ -15,7 +15,7 @@ rdmsr_SOURCES =		\
+ 
+ rdmsr_CFLAGS = $(AM_CFLAGS)
+ 
+-cpuid_SOURCES =		\
++msr_cpuid_SOURCES =		\
+ 	cpuid.c
+ 
+ cpuid_CFLAGS = $(AM_CFLAGS)
+-- 
+2.10.1
+
