@@ -4,7 +4,7 @@
 #
 Name     : msr-tools
 Version  : 1.3
-Release  : 2
+Release  : 3
 URL      : https://01.org/sites/default/files/downloads/msr-tools/msr-tools-1.3.zip
 Source0  : https://01.org/sites/default/files/downloads/msr-tools/msr-tools-1.3.zip
 Summary  : No detailed summary available
@@ -12,6 +12,7 @@ Group    : Development/Tools
 License  : GPL-2.0
 Requires: msr-tools-bin
 Patch1: 0001-autospec.patch
+Patch2: 0001-Change-name-of-cpuid-tools-to-msr-cpuid.patch
 
 %description
 No detailed description available
@@ -27,6 +28,7 @@ bin components for the msr-tools package.
 %prep
 %setup -q -n msr-tools-master
 %patch1 -p1
+%patch2 -p1
 
 %build
 export LANG=C
@@ -42,6 +44,6 @@ rm -rf %{buildroot}
 
 %files bin
 %defattr(-,root,root,-)
-%exclude /usr/bin/cpuid
+/usr/bin/msr-cpuid
 /usr/bin/rdmsr
 /usr/bin/wrmsr
