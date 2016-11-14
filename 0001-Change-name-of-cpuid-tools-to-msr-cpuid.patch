@@ -1,4 +1,4 @@
-From df5a12d35cf2de1cdd3a223a8486299e35286567 Mon Sep 17 00:00:00 2001
+From 8603f774f87347402a2e5755fd8ef05b72379837 Mon Sep 17 00:00:00 2001
 From: Victor Rodriguez <victor.rodriguez.bahena@intel.com>
 Date: Mon, 14 Nov 2016 15:50:42 +0000
 Subject: [PATCH] Change name of cpuid tools to msr-cpuid
@@ -16,11 +16,11 @@ install -D cpuid %{buildroot}%{_sbindir}/msr-cpuid
 
 Signed-off-by: Victor Rodriguez <victor.rodriguez.bahena@intel.com>
 ---
- Makefile.am | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+ Makefile.am | 6 +++---
+ 1 file changed, 3 insertions(+), 3 deletions(-)
 
 diff --git a/Makefile.am b/Makefile.am
-index 353e54c..dff1474 100644
+index 353e54c..33c3189 100644
 --- a/Makefile.am
 +++ b/Makefile.am
 @@ -1,7 +1,7 @@
@@ -40,7 +40,8 @@ index 353e54c..dff1474 100644
 +msr_cpuid_SOURCES =		\
  	cpuid.c
  
- cpuid_CFLAGS = $(AM_CFLAGS)
+-cpuid_CFLAGS = $(AM_CFLAGS)
++msr_cpuid_CFLAGS = $(AM_CFLAGS)
 -- 
 2.10.1
 
