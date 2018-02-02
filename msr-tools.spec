@@ -4,7 +4,7 @@
 #
 Name     : msr-tools
 Version  : 1.3
-Release  : 5
+Release  : 6
 URL      : https://01.org/sites/default/files/downloads/msr-tools/msr-tools-1.3.zip
 Source0  : https://01.org/sites/default/files/downloads/msr-tools/msr-tools-1.3.zip
 Summary  : No detailed summary available
