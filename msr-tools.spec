@@ -4,13 +4,13 @@
 #
 Name     : msr-tools
 Version  : 1.3
-Release  : 8
+Release  : 9
 URL      : https://01.org/sites/default/files/downloads/msr-tools/msr-tools-1.3.zip
 Source0  : https://01.org/sites/default/files/downloads/msr-tools/msr-tools-1.3.zip
 Summary  : No detailed summary available
 Group    : Development/Tools
 License  : GPL-2.0
-Requires: msr-tools-bin
+Requires: msr-tools-bin = %{version}-%{release}
 Patch1: 0001-autospec.patch
 Patch2: 0001-Change-name-of-cpuid-tools-to-msr-cpuid.patch
 
@@ -27,17 +27,33 @@ bin components for the msr-tools package.
 
 %prep
 %setup -q -n msr-tools-master
+cd %{_builddir}/msr-tools-master
 %patch1 -p1
 %patch2 -p1
 
 %build
-export LANG=C
+export http_proxy=http://127.0.0.1:9/
+export https_proxy=http://127.0.0.1:9/
+export no_proxy=localhost,127.0.0.1,0.0.0.0
+export LANG=C.UTF-8
+export SOURCE_DATE_EPOCH=1593110072
+export GCC_IGNORE_WERROR=1
+export AR=gcc-ar
+export RANLIB=gcc-ranlib
+export NM=gcc-nm
+export CFLAGS="$CFLAGS -O3 -ffat-lto-objects -flto=4 "
+export FCFLAGS="$FFLAGS -O3 -ffat-lto-objects -flto=4 "
+export FFLAGS="$FFLAGS -O3 -ffat-lto-objects -flto=4 "
+export CXXFLAGS="$CXXFLAGS -O3 -ffat-lto-objects -flto=4 "
 %reconfigure --disable-static
-make V=1  %{?_smp_mflags}
+make  %{?_smp_mflags}
 
 %install
+export SOURCE_DATE_EPOCH=1593110072
 rm -rf %{buildroot}
 %make_install
+## Remove excluded files
+rm -f %{buildroot}/usr/bin/cpuid
 
 %files
 %defattr(-,root,root,-)
